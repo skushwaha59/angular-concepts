@@ -106,3 +106,30 @@ Angular is a popular framework for building web applications. Version 15 brings 
 7. When do we use a directive in Angular?
    
    If you create an Angular application where multiple components need to have similar functionalities, you have to do it by adding this functionality individually to       every component. This is not a very easy task. Directives are used to cope up with this situation. Here, we can create a directive with the required functionality and    then import the directive to components that require this functionality.
+
+8. What is the purpose of AsyncPipe in Angular?
+
+   The `AsyncPipe` in Angular is used to automatically subscribe to an Observable or Promise and manage the subscription for you. It allows you to bind asynchronous data directly to your template, handling the subscription and unsubscription process behind the scenes. This simplifies your code and helps avoid memory leaks caused by manual subscription management.
+
+Here's how the `AsyncPipe` works:
+
+1. **Observables**: When you use the `AsyncPipe` with an Observable in your template, Angular automatically subscribes to the Observable for you and updates the view whenever a new value is emitted. It also unsubscribes from the Observable when the component is destroyed, preventing memory leaks.
+
+   Example:
+   ```html
+   <div>{{ data$ | async }}</div>
+   ```
+
+   In this example, `data$` is an Observable in the component class, and the `AsyncPipe` subscribes to it. Whenever `data$` emits a new value, the `AsyncPipe` updates the view with that value.
+
+2. **Promises**: Similarly, the `AsyncPipe` can be used with Promises to handle asynchronous data.
+
+   Example:
+   ```html
+   <div>{{ dataPromise | async }}</div>
+   ```
+
+   In this example, `dataPromise` is a Promise in the component class, and the `AsyncPipe` resolves the Promise and updates the view with the resolved value.
+
+Using the `AsyncPipe` simplifies your code by handling the subscription and unsubscription process for you. It's especially useful when dealing with asynchronous data in Angular applications, such as data fetched from an API or changes in state over time.
+   
