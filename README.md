@@ -154,4 +154,107 @@ b. **Promises**: Similarly, the `AsyncPipe` can be used with Promises to handle 
    - **Directive**: Directives are defined using the `@Directive` decorator, which provides metadata such as the selector, inputs, outputs, and other configuration options.
 
 In summary, components are used to create reusable UI elements with their own templates, while directives are used to add behavior or modify the appearance of existing elements. Components are more commonly used and are the primary building blocks of Angular applications, while directives are used for more specialized behaviors and enhancements.
+
+10. What do you understand by Angular bootstrapping?
+
+    Angular bootstrapping refers to the process of initializing an Angular application by starting the Angular framework and loading the root module of the application. Bootstrapping is typically done in the main file of the application (e.g., `main.ts` in Angular CLI projects) and involves several steps:
+
+1. **Import Angular platform**: The first step is to import the platform-specific Angular bootstrap function (`platformBrowserDynamic` for browser-based applications or `platformServer` for server-side rendering).
+
+2. **Bootstrap the AppModule**: Next, you use the bootstrap function to bootstrap the root module of your application (usually `AppModule`). This tells Angular to load the root module and start the application.
+
+3. **Provide any necessary configurations**: You can also provide any necessary configurations to the bootstrap function, such as enabling production mode (`enableProdMode`) or setting up server-side rendering.
+
+4. **Start the application**: Finally, you call the `bootstrapModule` function with the root module class (e.g., `AppModule`) to start the application.
+
+Here's an example of Angular bootstrapping in a browser-based application:
+
+```typescript
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+```
+
+In this example, we import `platformBrowserDynamic`, which is used to bootstrap the application, and then call `bootstrapModule` with `AppModule` to start the application. Any necessary configurations or error handling can be added as needed.
+
+11. What is the best way to perform Error handling in Angular?
+
+    Error handling in Angular can be done using various techniques depending on the context and requirements of your application. Here are some best practices for error handling in Angular:
+
+1. **Use RxJS catchError operator**: When dealing with asynchronous operations, such as HTTP requests, use the catchError operator from RxJS to handle errors. This allows you to gracefully handle errors and provide fallback mechanisms.
+
+   Example:
+   ```typescript
+   import { catchError } from 'rxjs/operators';
+   import { throwError } from 'rxjs';
+
+   getData() {
+     return this.http.get<any>('https://example.com/api/data')
+       .pipe(
+         catchError(error => {
+           console.error('An error occurred:', error);
+           return throwError('Something went wrong');
+         })
+       );
+   }
+   ```
+
+2. **Global error handling**: Implement a global error handler to catch unhandled errors that occur in your application. You can use Angular's ErrorHandler class to create a custom global error handler.
+
+   Example:
+   ```typescript
+   import { ErrorHandler } from '@angular/core';
+
+   class GlobalErrorHandler implements ErrorHandler {
+     handleError(error: any): void {
+       console.error('Global error handler:', error);
+       // Perform additional actions, such as logging or displaying an error message
+     }
+   }
+
+   @NgModule({
+     providers: [
+       { provide: ErrorHandler, useClass: GlobalErrorHandler }
+     ]
+   })
+   export class AppModule { }
+   ```
+
+3. **Intercept HTTP errors**: Use Angular's HTTP interceptor to intercept HTTP requests and responses. This allows you to handle errors globally, log errors, or retry failed requests.
+
+   Example:
+   ```typescript
+   import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+   import { Observable, throwError } from 'rxjs';
+   import { catchError } from 'rxjs/operators';
+
+   export class ErrorInterceptor implements HttpInterceptor {
+     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+       return next.handle(req)
+         .pipe(
+           catchError((error: HttpErrorResponse) => {
+             console.error('HTTP error interceptor:', error);
+             return throwError(error.message || 'Server error');
+           })
+         );
+     }
+   }
+
+   @NgModule({
+     providers: [
+       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+     ]
+   })
+   export class AppModule { }
+   ```
+
+4. **Client-side form validation**: Use Angular's built-in form validation features to validate user input and provide feedback to users about invalid input.
+
+5. **Logging**: Use a logging service to log errors and other important information in your application. This can help you diagnose issues and monitor the health of your application.
+
+By following these best practices, you can effectively handle errors in your Angular application and provide a better user experience.
+
+12. 
    
