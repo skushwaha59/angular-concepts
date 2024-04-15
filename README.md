@@ -113,7 +113,7 @@ Angular is a popular framework for building web applications. Version 15 brings 
 
 Here's how the `AsyncPipe` works:
 
-1. **Observables**: When you use the `AsyncPipe` with an Observable in your template, Angular automatically subscribes to the Observable for you and updates the view whenever a new value is emitted. It also unsubscribes from the Observable when the component is destroyed, preventing memory leaks.
+a. **Observables**: When you use the `AsyncPipe` with an Observable in your template, Angular automatically subscribes to the Observable for you and updates the view whenever a new value is emitted. It also unsubscribes from the Observable when the component is destroyed, preventing memory leaks.
 
    Example:
    ```html
@@ -122,7 +122,7 @@ Here's how the `AsyncPipe` works:
 
    In this example, `data$` is an Observable in the component class, and the `AsyncPipe` subscribes to it. Whenever `data$` emits a new value, the `AsyncPipe` updates the view with that value.
 
-2. **Promises**: Similarly, the `AsyncPipe` can be used with Promises to handle asynchronous data.
+b. **Promises**: Similarly, the `AsyncPipe` can be used with Promises to handle asynchronous data.
 
    Example:
    ```html
@@ -131,5 +131,27 @@ Here's how the `AsyncPipe` works:
 
    In this example, `dataPromise` is a Promise in the component class, and the `AsyncPipe` resolves the Promise and updates the view with the resolved value.
 
-Using the `AsyncPipe` simplifies your code by handling the subscription and unsubscription process for you. It's especially useful when dealing with asynchronous data in Angular applications, such as data fetched from an API or changes in state over time.
+   Using the `AsyncPipe` simplifies your code by handling the subscription and unsubscription process for you. It's especially useful when dealing with asynchronous data    in Angular applications, such as data fetched from an API or changes in state over time.
+
+9. What are the key differences between a Component and a Directive in Angular?
+
+   In Angular, components and directives are both classes that add behavior to elements in the DOM, but they serve different purposes and have some key differences:
+
+1. **Purpose**:
+   - **Component**: A component is a directive with a template. It represents a reusable UI element and encapsulates the template, styles, and behavior for that element. Components are the most common building blocks in Angular applications.
+   - **Directive**: A directive is a class that adds behavior to an existing element or modifies its appearance. Directives are used to create reusable behaviors that can be applied to multiple elements in a template.
+
+2. **Template**:
+   - **Component**: A component has its own template, which defines the structure of the component's view. The template can include HTML, Angular directives, and bindings to display data and respond to user actions.
+   - **Directive**: A directive does not have a template of its own. Instead, it modifies the behavior or appearance of the element it is applied to. Directives can manipulate the DOM, listen for events, and interact with other directives or components.
+
+3. **Usage**:
+   - **Component**: Components are used to create reusable UI elements, such as buttons, forms, or cards. They are the building blocks of Angular applications and are often composed together to create complex user interfaces.
+   - **Directive**: Directives are used to add behavior to elements, such as tooltips, drag-and-drop functionality, or custom validations. They are applied to existing elements in a template to enhance their functionality.
+
+4. **Metadata**:
+   - **Component**: Components are defined using the `@Component` decorator, which provides metadata such as the selector, template, styles, and other configuration options.
+   - **Directive**: Directives are defined using the `@Directive` decorator, which provides metadata such as the selector, inputs, outputs, and other configuration options.
+
+In summary, components are used to create reusable UI elements with their own templates, while directives are used to add behavior or modify the appearance of existing elements. Components are more commonly used and are the primary building blocks of Angular applications, while directives are used for more specialized behaviors and enhancements.
    
