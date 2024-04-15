@@ -101,4 +101,8 @@ Angular is a popular framework for building web applications. Version 15 brings 
 
    In this example, `imageUrl` is a property of the component class, and its value will be dynamically bound to the `src` attribute of the `img` element.
 
-Both string interpolation and property binding are essential features of Angular that allow you to create dynamic and responsive web applications by updating the UI based on changes in the component's data.
+   Both string interpolation and property binding are essential features of Angular that allow you to create dynamic and responsive web applications by updating the UI      based on changes in the component's data.
+
+7. When do we use a directive in Angular?
+   
+   If you create an Angular application where multiple components need to have similar functionalities, you have to do it by adding this functionality individually to       every component. This is not a very easy task. Directives are used to cope up with this situation. Here, we can create a directive with the required functionality and    then import the directive to components that require this functionality.
