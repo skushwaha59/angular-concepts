@@ -73,4 +73,32 @@ Angular is a popular framework for building web applications. Version 15 brings 
    export class AppRoutingModule { }
    ```
 
-These are just a few of the concepts in Angular. Version 15 builds upon these foundations to make it easier and more powerful to build web applications.
+6. What are string interpolation and property binding in Angular?
+
+   **String Interpolation**:
+   - String interpolation uses double curly braces (`{{ }}`) to bind component data to an element in the template.
+   - It allows you to display component data in the HTML template.
+   - Angular evaluates the expression inside the curly braces and converts it to a string.
+   - String interpolation can be used for simple expressions, including variables, method calls, and ternary operators.
+
+   Example:
+   ```html
+   <p>Hello, {{ name }}!</p>
+   ```
+
+   In this example, `name` is a variable in the component class, and its value will be dynamically inserted into the paragraph element.
+
+   **Property Binding**:
+   - Property binding allows you to set an element's property value to a component's property.
+   - It uses square brackets (`[]`) to bind a property of an HTML element to a component property.
+   - Property binding is useful for dynamically updating attributes such as `src`, `href`, `disabled`, etc.
+   - You can also bind to custom properties or event properties of a DOM element.
+
+   Example:
+   ```html
+   <img [src]="imageUrl">
+   ```
+
+   In this example, `imageUrl` is a property of the component class, and its value will be dynamically bound to the `src` attribute of the `img` element.
+
+Both string interpolation and property binding are essential features of Angular that allow you to create dynamic and responsive web applications by updating the UI based on changes in the component's data.
